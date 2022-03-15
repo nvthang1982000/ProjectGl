@@ -1,8 +1,8 @@
 
 package com.hcl.productManagement.service;
 
-import com.hcl.productManagement.rep.userRep;
-import com.hcl.productManagement.model.user;
+import com.hcl.productManagement.rep.UserRepository;
+import com.hcl.productManagement.model.UserEntity;
 
 import java.util.ArrayList;
 import org.springframework.security.core.userdetails.*;
@@ -14,30 +14,31 @@ import org.springframework.stereotype.Service;
 
 public class userService implements UserDetailsService{
     @Autowired
-    userRep rep;
+    UserRepository rep;
     @Override
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-        user u=rep.findById(Integer.parseInt(id)).get();
+        UserEntity u=rep.findById(Integer.parseInt(id)).get();
         if (u == null) {
              throw new UsernameNotFoundException("User not found with id: " + id);
         }
     
-       return new org.springframework.security.core.userdetails.User(u.getUsername(), u.getPassword(),
+       return new org.springframework.security.core.userdetails.User(u.getUserName(), u.getPass(),
        new ArrayList<>());
     }
 
     public boolean checkUsername(String email)
     {
-      return rep.findByUsername(email) == null ;
+      return rep.findByUserName(email) == null ;
     }
 
-    public user login(user user) {
+    public UserEntity login(UserEntity user) {
 
-        return rep.findByUsername(user.getUsername());
+        return rep.findByUserName(user.getUserName());
     }
 
-    public user create(user user) {
+    public UserEntity create(UserEntity user) {
         //TODO-create use
         return rep.save(user);
     }
+
 }
