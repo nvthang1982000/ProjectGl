@@ -7,7 +7,8 @@ public class categories {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int IDCategories;
-    private String Name;
+    @Column(name="Name")
+    private String name;
 
     public int getIDCategories() {
         return this.IDCategories;
@@ -18,11 +19,11 @@ public class categories {
     }
 
     public String getName() {
-        return this.Name;
+        return this.name;
     }
 
     public void setName(String Name) {
-        this.Name = Name;
+        this.name = Name;
     }
 
     

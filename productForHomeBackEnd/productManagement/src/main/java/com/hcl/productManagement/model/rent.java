@@ -5,11 +5,16 @@ public class rent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int IDRent;
-    private int IDUser;
-    private int IDOwner;
-    private int IDPlace;
-    private String Datestart;
-    private String Dateend;
+    @Column(name="IDUser")
+    private int iDUser;
+    @Column(name="IDOwner")
+    private int iDOwner;
+    @Column(name="IDPlace")
+    private int iDPlace;
+    @Column(name="Datestart")
+    private String datestart;
+    @Column(name="Dateend")
+    private String dateend;
 
     public int getIDRent() {
         return this.IDRent;
@@ -20,43 +25,43 @@ public class rent {
     }
 
     public int getIDUser() {
-        return this.IDUser;
+        return this.iDUser;
     }
 
     public void setIDUser(int IDUser) {
-        this.IDUser = IDUser;
+        this.iDUser = IDUser;
     }
 
     public int getIDOwner() {
-        return this.IDOwner;
+        return this.iDOwner;
     }
 
     public void setIDOwner(int IDOwner) {
-        this.IDOwner = IDOwner;
+        this.iDOwner = IDOwner;
     }
 
     public int getIDPlace() {
-        return this.IDPlace;
+        return this.iDPlace;
     }
 
     public void setIDPlace(int IDPlace) {
-        this.IDPlace = IDPlace;
+        this.iDPlace = IDPlace;
     }
 
     public String getDatestart() {
-        return this.Datestart;
+        return this.datestart;
     }
 
     public void setDatestart(String Datestart) {
-        this.Datestart = Datestart;
+        this.datestart = Datestart;
     }
 
     public String getDateend() {
-        return this.Dateend;
+        return this.dateend;
     }
 
     public void setDateend(String Dateend) {
-        this.Dateend = Dateend;
+        this.dateend = Dateend;
     }
 
     

@@ -7,12 +7,18 @@ public class user {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int IDUser;
-    private String Username;
-    private String Password;
-    private String Name;
-    private String Email;
+    @Column(name="Username")
+    private String username;
+    @Column(name="Password")
+    private String password;
+    @Column(name="Name")
+    private String name;
+    @Column(name="Email")
+    private String email;
+    @Column(name="Phone")
     private String Phone;
-    private String Image;
+    @Column(name="Image")
+    private String image;
 
     public int getIDUser() {
         return this.IDUser;
@@ -23,35 +29,35 @@ public class user {
     }
 
     public String getUsername() {
-        return this.Username;
+        return this.username;
     }
 
     public void setUsername(String Username) {
-        this.Username = Username;
+        this.username = Username;
     }
 
     public String getPassword() {
-        return this.Password;
+        return this.password;
     }
 
     public void setPassword(String Password) {
-        this.Password = Password;
+        this.password = Password;
     }
 
     public String getName() {
-        return this.Name;
+        return this.name;
     }
 
     public void setName(String Name) {
-        this.Name = Name;
+        this.name = Name;
     }
 
     public String getEmail() {
-        return this.Email;
+        return this.email;
     }
 
     public void setEmail(String Email) {
-        this.Email = Email;
+        this.email = Email;
     }
 
     public String getPhone() {
@@ -63,14 +69,22 @@ public class user {
     }
 
     public String getImage() {
-        return this.Image;
+        return this.image;
     }
 
     public void setImage(String Image) {
-        this.Image = Image;
+        this.image = Image;
+    }
+    
+    @Transient
+    private String token;
+
+    public String getToken() {
+        return this.token;
     }
 
-
-    
+    public void setToken(String token) {
+        this.token = token;
+    } 
 
 }

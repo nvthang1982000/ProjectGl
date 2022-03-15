@@ -13,7 +13,7 @@ public class placeService {
     @Autowired
     placeRep rep;
 
-    public List<place> getAllplace()
+    public List<place> getAllPlace()
     {
         //TODO-get all product
             return null;

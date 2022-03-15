@@ -5,7 +5,8 @@ public class features {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int IDFeatures;
-    private String Name;
+    @Column(name="Name")
+    private String name;
 
     public int getIDFeatures() {
         return this.IDFeatures;
@@ -16,11 +17,11 @@ public class features {
     }
 
     public String getName() {
-        return this.Name;
+        return this.name;
     }
 
     public void setName(String Name) {
-        this.Name = Name;
+        this.name = Name;
     }
 
     

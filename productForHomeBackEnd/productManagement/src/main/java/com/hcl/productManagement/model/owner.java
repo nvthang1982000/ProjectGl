@@ -7,12 +7,18 @@ public class owner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int IDOwner;
-    private String Username;
-    private String Password;
-    private String Name;
-    private String Email;
-    private String Phone;
-    private String Image;
+    @Column(name="Username")
+    private String username;
+    @Column(name="Password")
+    private String password;
+    @Column(name="Name")
+    private String name;
+    @Column(name="Email")
+    private String email;
+    @Column(name="Phone")
+    private String phone;
+    @Column(name="Image")
+    private String image;
 
     public int getIDOwner() {
         return this.IDOwner;
@@ -23,51 +29,51 @@ public class owner {
     }
 
     public String getUsername() {
-        return this.Username;
+        return this.username;
     }
 
     public void setUsername(String Username) {
-        this.Username = Username;
+        this.username = Username;
     }
 
     public String getPassword() {
-        return this.Password;
+        return this.password;
     }
 
     public void setPassword(String Password) {
-        this.Password = Password;
+        this.password = Password;
     }
 
     public String getName() {
-        return this.Name;
+        return this.name;
     }
 
     public void setName(String Name) {
-        this.Name = Name;
+        this.name = Name;
     }
 
     public String getEmail() {
-        return this.Email;
+        return this.email;
     }
 
     public void setEmail(String Email) {
-        this.Email = Email;
+        this.email = Email;
     }
 
     public String getPhone() {
-        return this.Phone;
+        return this.phone;
     }
 
     public void setPhone(String Phone) {
-        this.Phone = Phone;
+        this.phone = Phone;
     }
 
     public String getImage() {
-        return this.Image;
+        return this.image;
     }
 
     public void setImage(String Image) {
-        this.Image = Image;
+        this.image = Image;
     }
 
 }

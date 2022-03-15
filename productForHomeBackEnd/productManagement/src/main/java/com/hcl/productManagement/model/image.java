@@ -5,8 +5,10 @@ public class image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int IDImage;
-    private int IDPlace;
-    private String Name;
+    @Column(name="IDPlace")
+    private int iDPlace;
+    @Column(name="Name")
+    private String name;
 
     public int getIDImage() {
         return this.IDImage;
@@ -17,19 +19,19 @@ public class image {
     }
 
     public int getIDPlace() {
-        return this.IDPlace;
+        return this.iDPlace;
     }
 
     public void setIDPlace(int IDPlace) {
-        this.IDPlace = IDPlace;
+        this.iDPlace = IDPlace;
     }
 
     public String getName() {
-        return this.Name;
+        return this.name;
     }
 
     public void setName(String Name) {
-        this.Name = Name;
+        this.name = Name;
     }
 
     

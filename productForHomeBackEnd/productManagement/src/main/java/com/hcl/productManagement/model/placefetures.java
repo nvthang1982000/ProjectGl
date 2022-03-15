@@ -8,8 +8,10 @@ public class placefetures {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int IDPlacefetures;
-    private int IDPlace;
-    private int IDFeatures;
+    @Column(name="IDPlace")
+    private int iDPlace;
+    @Column(name="IDFeatures")
+    private int iDFeatures;
 
     public int getIDPlacefetures() {
         return this.IDPlacefetures;
@@ -20,19 +22,19 @@ public class placefetures {
     }
 
     public int getIDPlace() {
-        return this.IDPlace;
+        return this.iDPlace;
     }
 
     public void setIDPlace(int IDPlace) {
-        this.IDPlace = IDPlace;
+        this.iDPlace = IDPlace;
     }
 
     public int getIDFeatures() {
-        return this.IDFeatures;
+        return this.iDFeatures;
     }
 
     public void setIDFeatures(int IDFeatures) {
-        this.IDFeatures = IDFeatures;
+        this.iDFeatures = IDFeatures;
     }
 
    

@@ -7,12 +7,18 @@ public class place {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int IDPlace;
-    private int IDCategories;
-    private String Name;
-    private String Detail;
-    private String Address;
-    private int Ratting;
-    private int Price;
+    @Column(name="IDCategories")
+    private int iDCategories;
+    @Column(name="Name")
+    private String name;
+    @Column(name="Detail")
+    private String detail;
+    @Column(name="Address")
+    private String address;
+    @Column(name="Ratting")
+    private int ratting;
+    @Column(name="Price")
+    private int price;
 
     public int getIDPlace() {
         return this.IDPlace;
@@ -23,51 +29,51 @@ public class place {
     }
 
     public int getIDCategories() {
-        return this.IDCategories;
+        return this.iDCategories;
     }
 
     public void setIDCategories(int IDCategories) {
-        this.IDCategories = IDCategories;
+        this.iDCategories = IDCategories;
     }
 
     public String getName() {
-        return this.Name;
+        return this.name;
     }
 
     public void setName(String Name) {
-        this.Name = Name;
+        this.name = Name;
     }
 
     public String getDetail() {
-        return this.Detail;
+        return this.detail;
     }
 
     public void setDetail(String Detail) {
-        this.Detail = Detail;
+        this.detail = Detail;
     }
 
     public String getAddress() {
-        return this.Address;
+        return this.address;
     }
 
     public void setAddress(String Address) {
-        this.Address = Address;
+        this.address = Address;
     }
 
     public int getRatting() {
-        return this.Ratting;
+        return this.ratting;
     }
 
     public void setRatting(int Ratting) {
-        this.Ratting = Ratting;
+        this.ratting = Ratting;
     }
 
     public int getPrice() {
-        return this.Price;
+        return this.price;
     }
 
     public void setPrice(int Price) {
-        this.Price = Price;
+        this.price = Price;
     }
 
 
