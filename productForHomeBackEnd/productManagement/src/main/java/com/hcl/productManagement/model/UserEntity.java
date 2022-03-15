@@ -1,10 +1,7 @@
 package com.hcl.productManagement.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "User")
@@ -36,12 +33,23 @@ public class UserEntity {
 	@Column(name = "Address", nullable = false)
 	private String Address;
 
+	@Column(name = "Image", nullable = false)
+	private String Image;
+
+	public String getImage() {
+		return this.Image;
+	}
+
+	public void setImage(String Image) {
+		this.Image = Image;
+	}
+
 	public UserEntity() {
 		super();
 	}
 
 	public UserEntity(int  idUser, String userName, String pass, String fullName, String gender, String phoneNumber,
-			String email, String address) {
+			String email, String address, String image) {
 		super();
 		IdUser = idUser;
 		UserName = userName;
@@ -51,6 +59,7 @@ public class UserEntity {
 		PhoneNumber = phoneNumber;
 		Email = email;
 		Address = address;
+		Image = image;
 	}
 
 	public int  getIdUser() {
@@ -116,6 +125,17 @@ public class UserEntity {
 	public void setAddress(String address) {
 		Address = address;
 	}
+
+	@Transient
+    private String token;
+
+    public String getToken() {
+        return this.token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    } 
 	
 	
 }

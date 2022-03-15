@@ -1,63 +1,66 @@
-// package com.hcl.productManagement.service;
+package com.hcl.productManagement.service;
 
-// import java.util.List;
+import java.util.List;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.stereotype.Service;
+import com.hcl.productManagement.model.PlaceEntity;
+import com.hcl.productManagement.rep.PlaceRepository;
 
-// import org.springframework.web.multipart.MultipartFile;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-// import java.io.InputStream;
-// import java.nio.file.*;
-// @Service
-// public class systemService {
-//     @Autowired
-//     PlaceRepository rep;
+import org.springframework.web.multipart.MultipartFile;
 
-//     @Autowired
-//     wishlistRep wishrep;
-//     systemService() {
+import java.io.InputStream;
+import java.nio.file.*;
+@Service
+public class systemService {
+    @Autowired
+    PlaceRepository rep;
 
-//         this.rootLocation = Paths.get("src\\main\\resources\\upload");
+    // @Autowired
+    // wishlistRep wishrep;
+    systemService() {
 
-//     }
+        this.rootLocation = Paths.get("src\\main\\resources\\upload");
 
-//     private final Path rootLocation;
-//     public List<place> SearchPlace(String key)
-//     {
-//         //TODO-get search réuit
-//             return null;
-//     }
+    }
 
-//     public void addWishList(String productId,int idUser) {
-//         wishlist wl=new wishlist();
-//         wl.setIDPlace(Integer.parseInt(productId));
-//         wl.setIDUser(idUser);
-//         wishrep.save(wl);
-//         //TODO-add to wish list
+    private final Path rootLocation;
+    public List<PlaceEntity> SearchPlace(String key)
+    {
+        //TODO-get search réuit
+            return null;
+    }
 
-//     }
+    // public void addWishList(String productId,int idUser) {
+    //     wishlist wl=new wishlist();
+    //     wl.setIDPlace(Integer.parseInt(productId));
+    //     wl.setIDUser(idUser);
+    //     wishrep.save(wl);
+    //     //TODO-add to wish list
+
+    // }
 
 
     
-//     public String uploadFile(MultipartFile file,String filename) {
-//         try {
-//             if (file.isEmpty()) {
-//                 System.out.println("File is null");
-//             }
+    public String uploadFile(MultipartFile file,String filename) {
+        try {
+            if (file.isEmpty()) {
+                System.out.println("File is null");
+            }
             
-//             try (InputStream inputStream = file.getInputStream()) {
+            try (InputStream inputStream = file.getInputStream()) {
                
-//                 Files.copy(file.getInputStream(), this.rootLocation.resolve(filename),
-//                 StandardCopyOption.REPLACE_EXISTING); 
-//                 System.out.println("ok");
-//                         return "ok";
-//             }
-//         } catch (Exception e) {
-//             System.out.println(e);
-//             System.out.println("error");
-//         }
-//         return null;
-//     }
+                Files.copy(file.getInputStream(), this.rootLocation.resolve(filename),
+                StandardCopyOption.REPLACE_EXISTING); 
+                System.out.println("ok");
+                        return "ok";
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println("error");
+        }
+        return null;
+    }
 
-// }
+}
