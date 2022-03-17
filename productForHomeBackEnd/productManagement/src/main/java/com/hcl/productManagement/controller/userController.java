@@ -1,5 +1,5 @@
 package com.hcl.productManagement.controller;
-import java.util.UUID;
+import java.util.*;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -47,7 +47,7 @@ public class userController {
         { 
             String uuid = UUID.randomUUID().toString();
             String filename = uuid+"."+file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
-            sysService.uploadFile(file,"product/"+filename);
+            sysService.uploadFile(file,"    /"+filename);
             user.setImage(filename);
             BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
             user.setPass(bCryptPasswordEncoder.encode(user.getPass()));
@@ -57,5 +57,16 @@ public class userController {
         }
 
         return null;
+    }
+    //create token for debug
+    @GetMapping("token")
+    public String to()
+    {
+        return jwtTokenUtil.generateToken("1");
+    }
+
+    @GetMapping("getall")
+    public List<UserEntity> getall() {
+        return sys.getAll();
     }
 }

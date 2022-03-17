@@ -5,8 +5,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "PlaceFeature")
@@ -14,49 +16,47 @@ public class PlaceFeatureEntity {
 	@Id
 	@GeneratedValue
 	@Column(name = "IdPlaceFeature")
-	private int  IdPlaceFeature;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdPlace", nullable = false)
-    private PlaceEntity IdPlace;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdFeature", nullable = false)
-	private FeatureEntity IdFeature;
+	private int  idPlaceFeature;
+
+	@Column(name = "idPlace")
+    private int idPlace;
+
+	@Column(name = "idFeature")
+	private int idFeature;
 
 	public PlaceFeatureEntity() {
 		super();
 	}
 
-	public PlaceFeatureEntity(int  idPlaceFeature, PlaceEntity idPlace, FeatureEntity idFeature) {
+	public PlaceFeatureEntity(int  idPlaceFeaturee, int idPlacee, int idFeaturee) {
 		super();
-		IdPlaceFeature = idPlaceFeature;
-		IdPlace = idPlace;
-		IdFeature = idFeature;
+		idPlaceFeature = idPlaceFeaturee;
+		idPlace = idPlacee;
+		idFeature = idFeaturee;
 	}
 
 	public int  getIdPlaceFeature() {
-		return IdPlaceFeature;
+		return idPlaceFeature;
 	}
 
-	public void setIdPlaceFeature(int  idPlaceFeature) {
-		IdPlaceFeature = idPlaceFeature;
+	public void setIdPlaceFeature(int  idPlaceFeaturee) {
+		idPlaceFeature = idPlaceFeaturee;
 	}
 
-	public PlaceEntity getIdPlace() {
-		return IdPlace;
+	public int getIdPlace() {
+		return idPlace;
 	}
 
-	public void setIdPlace(PlaceEntity idPlace) {
-		IdPlace = idPlace;
+	public void setIdPlace(int idPlacee) {
+		idPlace = idPlacee;
 	}
 
-	public FeatureEntity getIdFeature() {
-		return IdFeature;
+	public int getIdFeature() {
+		return idFeature;
 	}
 
-	public void setIdFeature(FeatureEntity idFeature) {
-		IdFeature = idFeature;
+	public void setIdFeature(int idFeaturee) {
+		idFeature = idFeaturee;
 	}
 	
 	

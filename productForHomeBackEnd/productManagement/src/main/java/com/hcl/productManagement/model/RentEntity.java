@@ -20,75 +20,85 @@ public class RentEntity {
 	@Id
 	@GeneratedValue
 	@Column(name = "IdRent")
-	private int  IdRent;
+	private int  idRent;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdOwner", nullable = false)
-    private OwnerEntity IdOwner;
+	@Column(name = "idOwner")
+    private int idOwner;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdUser", nullable = false)
-    private UserEntity IdUser;
+	@Column(name = "idUser")
+    private int idUser;
+
+	@Column(name = "idPlace")
+    private int idPlace;
+
+	public int getIdPlace() {
+		return this.idPlace;
+	}
+
+	public void setIdPlace(int idPlace) {
+		this.idPlace = idPlace;
+	}
 	
 	@Temporal(TemporalType.TIMESTAMP)
     @Column(name = "StartDate", nullable = false)
-    private Date StartDate;
+    private Date startDate;
 	
 	@Temporal(TemporalType.TIMESTAMP)
     @Column(name = "FinishDate", nullable = false)
-    private Date FinishDate;
+    private Date finishDate;
 
 	public RentEntity() {
 		super();
 	}
 
-	public RentEntity(int  idRent, OwnerEntity idOwner, UserEntity idUser, Date startDate, Date finishDate) {
+	public RentEntity(int  idRentt, int idOwnerr, int idUserr, Date startDatee, Date finishDatee, int idplace) {
 		super();
-		IdRent = idRent;
-		IdOwner = idOwner;
-		IdUser = idUser;
-		StartDate = startDate;
-		FinishDate = finishDate;
+		idRent = idRentt;
+		idOwner = idOwnerr;
+		idUser = idUserr;
+		startDate = startDatee;
+		finishDate = finishDatee;
+		idPlace = idplace;
 	}
 
 	public int  getIdRent() {
-		return IdRent;
+		return idRent;
 	}
 
-	public void setIdRent(int  idRent) {
-		IdRent = idRent;
+	public void setIdRent(int  idRentt) {
+		idRent = idRentt;
 	}
 
-	public OwnerEntity getIdOwner() {
-		return IdOwner;
+	public int getIdOwner() {
+		return idOwner;
 	}
 
-	public void setIdOwner(OwnerEntity idOwner) {
-		IdOwner = idOwner;
+	public void setIdOwner(int idOwnerr) {
+		idOwner = idOwnerr;
 	}
 
-	public UserEntity getIdUser() {
-		return IdUser;
+	public int getIdUser() {
+		return idUser;
 	}
 
-	public void setIdUser(UserEntity idUser) {
-		IdUser = idUser;
+	public void setIdUser(int idUserr) {
+		idUser = idUserr;
 	}
 
 	public Date getStartDate() {
-		return StartDate;
+		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
-		StartDate = startDate;
+	public void setStartDate(Date startDatee) {
+		startDate = startDatee;
 	}
 
 	public Date getFinishDate() {
-		return FinishDate;
+		return finishDate;
 	}
 
-	public void setFinishDate(Date finishDate) {
-		FinishDate = finishDate;
+	public void setFinishDate(Date finishDatee) {
+		finishDate = finishDatee;
 	}
 	
 	

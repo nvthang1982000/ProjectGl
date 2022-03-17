@@ -10,120 +10,120 @@ public class UserEntity {
 	@Id
 	@GeneratedValue
 	@Column(name = "IdUser")
-	private int  IdUser;
+	private int  idUser;
 	
 	@Column(name = "UserName", length = 50, nullable = false)
-	private String UserName;
+	private String userName;
 	
-	@Column(name = "Pass", length = 50, nullable = false)
-	private String Pass;
+	@Column(name = "Pass", length = 500, nullable = false)
+	private String pass;
 	
 	@Column(name = "FullName", length = 50, nullable = false)
-	private String FullName;
+	private String fullName;
 	
 	@Column(name = "Gender", length = 10, nullable = false)
-	private String Gender;
+	private String gender;
 	
 	@Column(name = "PhoneNumber", length = 10, nullable = false)
-	private String PhoneNumber;
+	private String phoneNumber;
 	
 	@Column(name = "Email", length = 50, nullable = false)
-	private String Email;
+	private String email;
 	
 	@Column(name = "Address", nullable = false)
-	private String Address;
+	private String address;
 
 	@Column(name = "Image", nullable = false)
-	private String Image;
+	private String image;
 
 	public String getImage() {
-		return this.Image;
+		return this.image;
 	}
 
 	public void setImage(String Image) {
-		this.Image = Image;
+		this.image = Image;
 	}
 
 	public UserEntity() {
 		super();
 	}
 
-	public UserEntity(int  idUser, String userName, String pass, String fullName, String gender, String phoneNumber,
-			String email, String address, String image) {
+	public UserEntity(int  idUserr, String userNamee, String passs, String fullNamee, String genderr, String phoneNumberr,
+			String emaill, String addresss, String imagee) {
 		super();
-		IdUser = idUser;
-		UserName = userName;
-		Pass = pass;
-		FullName = fullName;
-		Gender = gender;
-		PhoneNumber = phoneNumber;
-		Email = email;
-		Address = address;
-		Image = image;
+		idUser = idUserr;
+		userName = userNamee;
+		pass = passs;
+		fullName = fullNamee;
+		gender = genderr;
+		phoneNumber = phoneNumberr;
+		email = emaill;
+		address = addresss;
+		image = imagee;
 	}
 
 	public int  getIdUser() {
-		return IdUser;
+		return idUser;
 	}
 
-	public void setIdUser(int  idUser) {
-		IdUser = idUser;
+	public void setIdUser(int  idUserr) {
+		idUser = idUserr;
 	}
 
 	public String getUserName() {
-		return UserName;
+		return userName;
 	}
 
-	public void setUserName(String userName) {
-		UserName = userName;
+	public void setUserName(String userNamee) {
+		userName = userNamee;
 	}
 
 	public String getPass() {
-		return Pass;
+		return pass;
 	}
 
-	public void setPass(String pass) {
-		Pass = pass;
+	public void setPass(String passs) {
+		pass = passs;
 	}
 
 	public String getFullName() {
-		return FullName;
+		return fullName;
 	}
 
-	public void setFullName(String fullName) {
-		FullName = fullName;
+	public void setFullName(String fullNamee) {
+		fullName = fullNamee;
 	}
 
 	public String getGender() {
-		return Gender;
+		return gender;
 	}
 
-	public void setGender(String gender) {
-		Gender = gender;
+	public void setGender(String genderr) {
+		gender = genderr;
 	}
 
 	public String getPhoneNumber() {
-		return PhoneNumber;
+		return phoneNumber;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		PhoneNumber = phoneNumber;
+	public void setPhoneNumber(String phoneNumberr) {
+		phoneNumber = phoneNumberr;
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
-	public void setEmail(String email) {
-		Email = email;
+	public void setEmail(String emaill) {
+		email = emaill;
 	}
 
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 
-	public void setAddress(String address) {
-		Address = address;
+	public void setAddress(String addresss) {
+		address = addresss;
 	}
 
 	@Transient

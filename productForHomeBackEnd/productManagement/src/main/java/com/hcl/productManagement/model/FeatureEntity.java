@@ -13,35 +13,35 @@ public class FeatureEntity {
 	@Id
 	@GeneratedValue
 	@Column(name = "IdFeature")
-	private int  IdFeature;
+	private int  idFeature;
 	
 	@Column(name = "NameFeature", length = 50, nullable = false)
-	private String NameFeature;
+	private String nameFeature;
 
 	public FeatureEntity() {
 		super();
 	}
 
-	public FeatureEntity(int  idFeature, String nameFeature) {
+	public FeatureEntity(int  idfeature, String namefeature) {
 		super();
-		IdFeature = idFeature;
-		NameFeature = nameFeature;
+		idFeature = idfeature;
+		nameFeature = namefeature;
 	}
 
 	public int  getIdFeature() {
-		return IdFeature;
+		return idFeature;
 	}
 
-	public void setIdFeature(int idFeature) {
-		IdFeature = idFeature;
+	public void setIdFeature(int idfeature) {
+		idFeature = idfeature;
 	}
 
 	public String getNameFeature() {
-		return NameFeature;
+		return nameFeature;
 	}
 
-	public void setNameFeature(String nameFeature) {
-		NameFeature = nameFeature;
+	public void setNameFeature(String namefeature) {
+		nameFeature = namefeature;
 	}
 	
 	

@@ -1,0 +1,312 @@
+<div class="container accommodations">
+  <div *ngIf="user">
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <div class="card">
+
+          <div class="card-body">
+            <div class="card-title mb-4">
+              <h2 style="font-size: 1.5rem; font-weight: bold">Accommodations</h2>
+              <hr />
+            </div>
+
+            <div *ngIf="message && successMessage" class="alert alert-success alert-dismissible fade show">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div *ngIf="message && !successMessage" class="alert alert-danger alert-dismissible fade show">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="col-12 accommodation-data">
+              <ul ngbNav #nav="ngbNav" class="nav-tabs mb-4">
+                <li ngbNavItem>
+                  <a ngbNavLink>Register New Accommodation</a>
+                  <ng-template ngbNavContent>
+                    <h4 style="font-style: italic">Location</h4><hr />
+                    <div class="col-12 d-flex justify-content-center">
+                      <form class="col-12" [formGroup]="locationForm">
+
+                        <div class="form-row form-group">
+                          <div class="col-12 mb-3">
+                            <label class="form-label">Address</label>
+                            <input type="text" class="form-control" name="addressInput" value="{{addressValue}}"
+                                   placeholder="Enter address" (input)="onAddressChange($event)" />
+                            <div class="search-result">
+                              <div *ngFor="let r of addressResults" (click)="onResultClick(r)">
+                                {{r.label}}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div id="map" leaflet (leafletMapReady)="onMapReady($event)" [leafletOptions]="mapOptions"
+                               (leafletClick)="onMapClick($event)"></div>
+
+                          <div class="col-12 mt-1 mb-3">
+                            <label class="form-label">Transportation</label>
+                            <textarea rows="3" cols="50" maxlength="100" formControlName="transportation" class="form-control"></textarea>
+                            <div *ngIf="f2.transportation.invalid && f2.transportation.touched" class="alert alert-danger">
+                              <div *ngIf="f2.transportation.errors.required">Transportation is required</div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </form>
+                    </div>
+
+                    <h4 class="mt-1" style="font-style: italic">Basic Info</h4><hr />
+                    <div class="col-12 d-flex justify-content-center">
+                      <form class="col-12" [formGroup]="infoForm">
+                        <div class="form-row form-group">
+                          <ng-template #t let-date let-focused="focused" let-disabled="disabled">
+                          <span class="custom-day"
+                                [class.text-muted]="disabled"
+                                [class.focused]="focused"
+                                [class.range]="isRange(date)"
+                                [class.faded]="isHovered(date) || isInside(date)"
+                                (mouseenter)="hoveredDate = date"
+                                (mouseleave)="hoveredDate = null">
+                            {{ date.day }}
+                          </span>
+                          </ng-template>
+
+                          <div class="col-12 mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" formControlName="name" class="form-control" />
+                            <div *ngIf="f1.name.invalid && f1.name.touched" class="alert alert-danger">
+                              <div *ngIf="f1.name.errors.required">Name is required</div>
+                            </div>
+                          </div>
+
+                          <div class="col-4 mb-3">
+                            <label class="form-label">Start date</label>
+                            <input class="col-12 form-control" ngbDatepicker (click)="datePicker1.toggle()" #datePicker1="ngbDatepicker" formControlName="startDate"
+                                   placeholder="yyyy-mm-dd" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [maxDate]="f1.endDate.value">
+                          </div>
+                          <div class="col-4 mb-3">
+                            <label class="form-label">End date</label>
+                            <input class="col-12 form-control" ngbDatepicker (click)="datePicker2.toggle()" #datePicker2="ngbDatepicker" formControlName="endDate"
+                                   placeholder="yyyy-mm-dd" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [minDate]="f1.startDate.value">
+                          </div>
+                          <div class="col-4 mb-3">
+                            <label class="form-label">Type</label>
+                            <div ngbDropdown class="d-block" container="body">
+                              <button class="btn btn-outline-secondary" id="typeMenu" ngbDropdownToggle>
+                                {{f1.type.value || 'Select accommodation type'}}
+                              </button>
+                              <div ngbDropdownMenu aria-labelledby="typeMenu">
+                                <button class="btn btn-secondary" ngbDropdownItem (click)="changeType('Private room')">Private room</button>
+                                <button class="btn btn-secondary" ngbDropdownItem (click)="changeType('Shared room')">Shared room</button>
+                                <button class="btn btn-secondary" ngbDropdownItem (click)="changeType('Entire home/apt')">Entire home/apt</button>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-4 mb-3">
+                            <label class="form-label">Minimum cost</label>
+                            <input type="number" min="1" formControlName="minCost" class="form-control" />
+                            <div *ngIf="f1.minCost.invalid && f1.minCost.touched" class="alert alert-danger">
+                              <div *ngIf="f1.minCost.errors.required">Minimum cost is required</div>
+                            </div>
+                          </div>
+                          <div class="col-4 mb-3">
+                            <label class="form-label">Cost per person</label>
+                            <input type="number" min="1" formControlName="costPerPerson" class="form-control" />
+                            <div *ngIf="f1.costPerPerson.invalid && f1.costPerPerson.touched" class="alert alert-danger">
+                              <div *ngIf="f1.costPerPerson.errors.required">Cost per person is required</div>
+                            </div>
+                          </div>
+                          <div class="col-4 mb-3">
+                            <label class="form-label">Beds</label>
+                            <input type="number" min="1" formControlName="beds" class="form-control" />
+                            <div *ngIf="f1.beds.invalid && f1.beds.touched" class="alert alert-danger">
+                              <div *ngIf="f1.beds.errors.required">Number of beds is required</div>
+                            </div>
+                          </div>
+
+                          <div class="col-4 mb-3">
+                            <label class="form-label">Bedrooms</label>
+                            <input type="number" min="0" formControlName="bedrooms" class="form-control" />
+                            <div *ngIf="f1.bedrooms.invalid && f1.bedrooms.touched" class="alert alert-danger">
+                              <div *ngIf="f1.bedrooms.errors.required">Number of bedrooms is required</div>
+                            </div>
+                          </div>
+                          <div class="col-4 mb-3">
+                            <label class="form-label">Bathrooms</label>
+                            <input type="number" min="1" formControlName="bathrooms" class="form-control" />
+                            <div *ngIf="f1.bathrooms.invalid && f1.bathrooms.touched" class="alert alert-danger">
+                              <div *ngIf="f1.bathrooms.errors.required">Number of bathrooms is required</div>
+                            </div>
+                          </div>
+                          <div class="col-4 mb-3">
+                            <label class="form-label">Area</label>
+                            <input type="number" min="1" formControlName="area" class="form-control" />
+                            <div *ngIf="f1.area.invalid && f1.area.touched" class="alert alert-danger">
+                              <div *ngIf="f1.area.errors.required">Area is required</div>
+                            </div>
+                          </div>
+
+                          <div class="col-4 mb-3">
+                            <label class="form-label">Images</label>
+                            <input type="file" multiple formControlName="images" class="form-control" (change)="onFileChange($event)"/>
+                            <div *ngIf="f1.images.invalid && f1.images.touched" class="alert alert-danger">
+                              <div *ngIf="f1.images.errors.required">Image is required</div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 mb-3">
+                            <div class="form-check form-check-inline mr-3">
+                              <input type="checkbox" formControlName="livingRoom" class="form-control form-check-input" id="livingRoom" />
+                              <label class="form-check-label" for="livingRoom">Living&nbsp;Room</label>
+                            </div>
+                            <div class="form-check form-check-inline mr-3">
+                              <input type="checkbox" formControlName="internet" class="form-control form-check-input" id="internet" />
+                              <label class="form-check-label" for="internet">Internet</label>
+                            </div>
+                            <div class="form-check form-check-inline mr-3">
+                              <input type="checkbox" formControlName="ac" class="form-control form-check-input" id="ac" />
+                              <label class="form-check-label" for="ac">A/C</label>
+                            </div>
+                            <div class="form-check form-check-inline mr-3">
+                              <input type="checkbox" formControlName="heating" class="form-control form-check-input" id="heating" />
+                              <label class="form-check-label" for="heating">Heating</label>
+                            </div>
+                            <div class="form-check form-check-inline mr-3">
+                              <input type="checkbox" formControlName="kitchen" class="form-control form-check-input" id="kitchen" />
+                              <label class="form-check-label" for="kitchen">Kitchen</label>
+                            </div>
+                            <div class="form-check form-check-inline mr-3">
+                              <input type="checkbox" formControlName="tv" class="form-control form-check-input" id="tv" />
+                              <label class="form-check-label" for="tv">TV</label>
+                            </div>
+                            <div class="form-check form-check-inline mr-3">
+                              <input type="checkbox" formControlName="parking" class="form-control form-check-input" id="parking" />
+                              <label class="form-check-label" for="parking">Parking</label>
+                            </div>
+                            <div class="form-check form-check-inline mr-3">
+                              <input type="checkbox" formControlName="elevator" class="form-control form-check-input" id="elevator" />
+                              <label class="form-check-label" for="elevator">Elevator</label>
+                            </div>
+                          </div>
+
+                          <div class="col-12 mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea rows="4" cols="50" maxlength="250" formControlName="description" class="form-control"></textarea>
+                            <div *ngIf="f1.description.invalid && f1.description.touched" class="alert alert-danger">
+                              <div *ngIf="f1.description.errors.required">Description is required</div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </form>
+                    </div>
+
+                    <h4 class="mt-1" style="font-style: italic">Rules</h4><hr />
+                    <div class="col-12 d-flex justify-content-center">
+                      <form class="col-12" [formGroup]="rulesForm" (ngSubmit)="onSubmit()">
+                        <div class="form-row form-group">
+                          <div class="col-12 mb-3">
+                            <div class="form-check form-check-inline mr-3">
+                              <input type="checkbox" formControlName="smoking" class="form-control form-check-input" id="smoking" />
+                              <label class="form-check-label" for="smoking">Smoking</label>
+                            </div>
+                            <div class="form-check form-check-inline mr-3">
+                              <input type="checkbox" formControlName="pets" class="form-control form-check-input" id="pets" />
+                              <label class="form-check-label" for="pets">Pets</label>
+                            </div>
+                            <div class="form-check form-check-inline mr-3">
+                              <input type="checkbox" formControlName="events" class="form-control form-check-input" id="events" />
+                              <label class="form-check-label" for="events">Events</label>
+                            </div>
+                          </div>
+
+                          <div class="col-4 mb-3">
+                            <label class="form-label">Minimum Days</label>
+                            <input type="number" min="1" formControlName="minDays" class="form-control" />
+                            <div *ngIf="f3.minDays.invalid && f3.minDays.touched" class="alert alert-danger">
+                              <div *ngIf="f3.minDays.errors.required">Minimum number of days is required</div>
+                            </div>
+                          </div>
+                          <div class="col-4 mb-3">
+                            <label class="form-label">Maximum Days</label>
+                            <input type="number" min="1" formControlName="maxDays" class="form-control" />
+                            <div *ngIf="f3.maxDays.invalid && f3.maxDays.touched" class="alert alert-danger">
+                              <div *ngIf="f3.maxDays.errors.required">Maximum number of days is required</div>
+                            </div>
+                          </div>
+                          <div class="col-4 mb-3">
+                            <label class="form-label">Maximum people</label>
+                            <input type="number" min="1" formControlName="maxPeople" class="form-control" />
+                            <div *ngIf="f3.maxPeople.invalid && f3.maxPeople.touched" class="alert alert-danger">
+                              <div *ngIf="f3.maxPeople.errors.required">Maximum number of people is required</div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <button type="submit" [disabled]="infoForm.invalid || locationForm.invalid || rulesForm.invalid"
+                                class="form-button btn btn-lg" style="float: right;">Save</button>
+                      </form>
+                    </div>
+                  </ng-template>
+                </li>
+
+                <li ngbNavItem>
+                  <a ngbNavLink>My Accommodations</a>
+                  <ng-template ngbNavContent>
+                    <div class="d-flex justify-content-start">
+                      <div *ngIf="emptyAcc">No accommodations!</div>
+                      <div *ngIf="!emptyAcc" class="col-12">
+                        <ngb-pagination
+                          [(page)]="page"
+                          [pageSize]="pageSize"
+                          [collectionSize]="accommodations.length">
+                        </ngb-pagination>
+
+                        <table class="col-12">
+                          <tr *ngFor="let a of accommodations | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; let i = index">
+                            <div class="card mb-3">
+                              <div class="card-body">
+                                <div class="card-title">
+                                  <div class="d-flex justify-content-start">
+                                    <div class="image-container">
+                                      <img [src]="accommodationsImages[i + (page-1) * pageSize]" class="img-thumbnail" />
+                                    </div>
+
+                                    <div class="col-9">
+                                      <a [routerLink]="['/accommodations', a.id]" class="d-block accommodation-link mb-1">{{a.info.name}}</a>
+                                      <h6 class="d-block"><i class="fa fa-globe" aria-hidden="true"></i> {{a.location.address.road}}</h6>
+                                      <h6 class="d-block">{{a.info.description}}</h6>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </tr>
+                        </table>
+
+                        <ngb-pagination
+                          [(page)]="page"
+                          [pageSize]="pageSize"
+                          [collectionSize]="accommodations.length">
+                        </ngb-pagination>
+                      </div>
+                    </div>
+                  </ng-template>
+                </li>
+              </ul>
+              <div [ngbNavOutlet]="nav"></div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

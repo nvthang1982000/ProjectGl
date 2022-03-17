@@ -4,7 +4,7 @@ package com.hcl.productManagement.service;
 import com.hcl.productManagement.rep.UserRepository;
 import com.hcl.productManagement.model.UserEntity;
 
-import java.util.ArrayList;
+import java.util.*;
 import org.springframework.security.core.userdetails.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +40,9 @@ public class userService implements UserDetailsService{
         //TODO-create use
         return rep.save(user);
     }
+    public List<UserEntity> getAll() {
+
+        return rep.findAll();
+     }
 
 }

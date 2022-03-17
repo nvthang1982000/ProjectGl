@@ -1,0 +1,30 @@
+.profile {
+  margin-top: 5%;
+  margin-bottom: 2.5em;
+  height: 600px;
+}
+
+.login {
+  padding-top: 90px;
+  padding-bottom: 50px;
+  margin: auto;
+  height: auto;
+}
+
+.login-title {
+  text-align: center;
+  font-weight: 600;
+}
+
+.login-button {
+  float: right;
+  color: #fff;
+  background-color: #fc5892;
+  border-color: #fc5892;
+}
+
+.login-button:hover {
+  color: #fff;
+  background-color: #e6477f;
+  border-color: #e6477f;
+}

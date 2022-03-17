@@ -1,0 +1,87 @@
+<div class="container profile">
+  <div class="row justify-content-center">
+    <div class="col-8 card">
+      <div class="card-body">
+        <div class="card-title">
+          <h3 class="signup-title">Signup</h3>
+        </div>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="invalidSignup" class="alert alert-danger alert-dismissible fade show">
+          {{ errorMessage }}
+          <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>-->
+        </div>
+        <div class="form-row form-group">
+
+          <div class="col-6 mb-2">
+            <label class="form-label">Name</label>
+            <input type="text" formControlName="Name" class="form-control" />
+            <div *ngIf="f.Name.invalid && f.Name.touched" class="alert alert-danger">
+              <div *ngIf="f.Name.errors.required">Name is required</div>
+            </div>
+          </div>
+
+          <div class="col-6 mb-2 ">
+            <label class="form-label">Username</label>
+            <input type="text" formControlName="username" class="form-control" />
+            <div *ngIf="f.username.invalid && f.username.touched" class="alert alert-danger">
+              <div *ngIf="f.username.errors.required">Username is required</div>
+            </div>
+          </div>
+          <div class="col-6 mb-2">
+            <label class="form-label">Email</label>
+            <input type="text" formControlName="email" class="form-control" placeholder="you@example.com" />
+            <div *ngIf="f.email.invalid && f.email.touched" class="alert alert-danger">
+              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors.email">Invalid email address</div>
+            </div>
+          </div>
+
+          <div class="col-6 mb-2">
+            <label class="form-label">Password</label>
+            <input type="password" formControlName="password" class="form-control" />
+            <div *ngIf="f.password.invalid && f.password.touched" class="alert alert-danger">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+              <div *ngIf="f.password.errors.minlength">Password at least 4 characters</div>
+            </div>
+          </div>
+
+          <div class="col-6 mb-2">
+            <label class="form-label">Profile Picture</label>
+            <input type="file" formControlName="profilePicture" class="form-control" (change)="onFileChange($event)" />
+            <div *ngIf="f.profilePicture.invalid && f.profilePicture.touched" class="alert alert-danger">
+              <div *ngIf="f.profilePicture.errors.required">Picture is required</div>
+            </div>
+          </div>
+
+          <div class="col-6 mb-2">
+            <label class="form-label">Phone</label>
+            <input type="text" formControlName="phone" class="form-control" />
+            <div *ngIf="f.phone.invalid && f.phone.touched" class="alert alert-danger">
+              <div *ngIf="f.phone.errors.required">Phone is required</div>
+              <div *ngIf="f.phone.errors.pattern">Only numbers</div>
+              <div *ngIf="f.phone.errors.maxlength">Phone must be 10 digits</div>
+              <div *ngIf="f.phone.errors.minlength">Phone must be 10 digits</div>
+            </div>
+          </div>
+
+          <div class="col-6 mb-2">
+            <div class="mt-2"><label class="form-label">Role selection</label></div>
+            <div class="form-check form-check-inline">
+              <input type="checkbox" formControlName="isHost" class="form-control form-check-input" id="isHost" />
+              <label class="form-check-label" for="isHost">admin</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input type="checkbox" formControlName="isGuest" class="form-control form-check-input" id="isGuest" />
+              <label class="form-check-label" for="isGuest">user</label></div>
+              <div *ngIf="signupForm.errors?.match && checkRoleTouched()" class="alert alert-danger">Role required</div>
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="signupForm.invalid" class="signup-button btn btn-lg">Done!</button>
+      </form>
+    </div>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,12 @@
 package com.hcl.productManagement.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,44 +16,42 @@ public class CategoryEntity {
 	@Id
 	@GeneratedValue
 	@Column(name = "IdCat")
-	private int  IdCat;
+	private int  idCat;
 	
 	@Column(name = "NameCat", length = 20, nullable = false)
-	private String NameCat;
+	private String nameCat;
 
 	
+
 	public CategoryEntity() {
 		super();
 	}
 
 
-	public CategoryEntity(int  idCat, String nameCat) {
+	public CategoryEntity(int  idcat, String namecat) {
 		super();
-		IdCat = idCat;
-		NameCat = nameCat;
+		idCat = idcat;
+		nameCat = namecat;
 	}
 
 
 	public int  getIdCat() {
-		return IdCat;
+		return idCat;
 	}
 
 
-	public void setIdCat(int  idCat) {
-		IdCat = idCat;
+	public void setIdCat(int  idcat) {
+		idCat = idcat;
 	}
 
 
 	public String getNameCat() {
-		return NameCat;
+		return nameCat;
 	}
 
 
-	public void setNameCat(String nameCat) {
-		NameCat = nameCat;
+	public void setNameCat(String namecat) {
+		nameCat = namecat;
 	}
-	
-	
-	
 	
 }

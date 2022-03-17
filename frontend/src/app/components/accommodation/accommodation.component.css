@@ -1,0 +1,95 @@
+.profile {
+    margin-top: 5%;
+    margin-bottom: 2%;
+  }
+  
+  .image-container {
+    position: relative;
+  }
+  
+  .img-thumbnail {
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  .reserve-button {
+    color: #fff;
+    background-color: #fc5892;
+    border-color: #fc5892;
+  }
+  
+  .reserve-button:hover {
+    color: #fff;
+    background-color: #e6477f;
+    border-color: #e6477f;
+  }
+  
+  .vl {
+    border-left: 1px solid rgba(0,0,0,0.1);
+  }
+  
+  .host-thumbnail {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  .accommodation-data .nav-tabs .nav-link {
+    color: #fc5892;
+  }
+  
+  .accommodation-data .nav-tabs .nav-link:hover {
+    color: #e6477f;
+  }
+  
+  .accommodation-data .nav-tabs .nav-link.active {
+    color: #495057;
+  }
+  
+  .tab-label {
+    font-weight: 600;
+  }
+  
+  #map {
+    height: 300px;
+    width: 100%;
+  }
+  
+  
+  ngb-pagination ::ng-deep a {
+    color: #495057 !important;
+  }
+  
+  ngb-pagination ::ng-deep .page-item.active .page-link {
+    color: #fff !important;
+    background-color: #fc5892;
+    border-color: #fc5892;
+  }
+  
+  ngb-pagination ::ng-deep .page-item.active:hover .page-link {
+    color: #fff !important;
+  }
+  
+  ngb-pagination ::ng-deep .page-item:hover .page-link {
+    color: #e6477f !important;
+  }
+  
+  .star {
+    position: relative;
+    display: inline-block;
+    font-size: 1.5rem;
+    color: #d3d3d3;
+  }
+  
+  .full {
+    color: red;
+  }
+  
+  .half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: red;
+  }

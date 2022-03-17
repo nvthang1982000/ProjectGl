@@ -16,11 +16,10 @@ public class ImageEntity {
 	@Id
 	@GeneratedValue
 	@Column(name = "IdImage")
-	private int  IdImage;
+	private int  idImage;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdPlace", nullable = false)
-    private PlaceEntity IdPlace;
+    @Column(name = "IdPlace")
+    private int idPlace;
 	
     @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
     private String image;
@@ -29,27 +28,27 @@ public class ImageEntity {
 		super();
 	}
 
-	public ImageEntity(int  idImage, PlaceEntity idPlace, String image) {
+	public ImageEntity(int  idimage, int idplace, String imagee) {
 		super();
-		IdImage = idImage;
-		IdPlace = idPlace;
-		this.image = image;
+		idImage = idimage;
+		idPlace = idplace;
+		this.image = imagee;
 	}
 
 	public int  getIdImage() {
-		return IdImage;
+		return idImage;
 	}
 
-	public void setIdImage(int  idImage) {
-		IdImage = idImage;
+	public void setIdImage(int  idimage) {
+		idImage = idimage;
 	}
 
-	public PlaceEntity getIdPlace() {
-		return IdPlace;
+	public int getIdPlace() {
+		return idPlace;
 	}
 
-	public void setIdPlace(PlaceEntity idPlace) {
-		IdPlace = idPlace;
+	public void setIdPlace(int idplace) {
+		idPlace = idplace;
 	}
 
 	public String getImage() {
